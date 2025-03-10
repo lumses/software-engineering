@@ -23,7 +23,7 @@ workspace {
                 tags "Database"
             }
 
-            user_service = container "Сервис пользователей" {
+            user_service = container "Сервис обработки пользователей" {
                 description "Обрабатывает запросы, связанные с пользователями" 
                 technology "Python/FastAPI"
                 -> user_db "сохранение и получение информации о пользователе" "JDBC"
