@@ -21,8 +21,7 @@
 - readme.md с текстом задания
 - workspace.dsl с моделью и view
 Полезный пример проекта в Structurizr DSL:
-https://github.com/DVDemon/architecture
-_python/tree/main/01_structurizr
+https://github.com/DVDemon/architecture_python/tree/main/01_structurizr
 Справка по языку: https://docs.structurizr.com/dsl/language
 
 ---
