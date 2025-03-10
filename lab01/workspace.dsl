@@ -10,7 +10,7 @@ workspace {
         social_network = softwareSystem "Социальная сеть" 
 
         user_system = softwareSystem "Система пользователей" {
-            description "Управление пользователями мессенджера"
+            description "Управление пользователями социальной сети"
 
             auth_service = container "Сервис авторизации пользователей" {
                 description "Авторизация пользователей"
@@ -31,7 +31,7 @@ workspace {
         }
 
         wall_system = softwareSystem "Система записей стен пользователя" {
-            description "Управление стенами пользователей"
+            description "Управление записями на стенах пользователей"
 
             wall_db = container "База данных записей стен пользователей" {
                 description "Управляет сохранением и получением записей стен полльзователей"
@@ -60,7 +60,7 @@ workspace {
             }
 
             message_service = container "Сервис обработки сообщений" {
-                description "Управляет сохранением и получением сообщений"
+                description "Управляет обработкой сообщений"
                 technology "Python/FastAPI"
                 -> message_db "сохранение и получение сообщений пользователей" "JDBC"
             }
@@ -84,7 +84,7 @@ workspace {
         user_system.auth_service -> wall_system.wall_service "Предоставляет доступ к системе записей на стене"
         user_system.auth_service -> ptp_system.ptp_chat "Предоставляет доступ к системе сообщений"
 
-        deploymentEnvironment "PROD" {
+        prod = deploymentEnvironment "PROD" {
             deploymentNode "Auth Server" {
                 containerInstance user_system.auth_service
                 instances 1
@@ -101,12 +101,12 @@ workspace {
             }
 
             deploymentNode "Ptp Chat Server" {
-                containerInstance ptp_system.ptp_chat ptp_system.message_service
+                containerInstance ptp_system.ptp_chat
                 instances 1
             }
 
             deploymentNode "Message Server" {
-                containerInstance ptp_system.ptp_chat ptp_system.message_service
+                containerInstance ptp_system.message_service
                 instances 1
             }
  
@@ -156,6 +156,21 @@ workspace {
             include user ptp_system.ptp_chat ptp_system.message_service ptp_system.message_db user_system.user_service
             autoLayout
             title "Контекст сообщений пользователей"
+        }
+
+        deployment user_system "PROD" "user_system_prod_deployment" {
+            autoLayout
+            include *
+        }
+
+        deployment wall_system "PROD" "wall_system_prod_deployment" {
+            autoLayout
+            include *
+        }
+
+        deployment ptp_system "PROD" "ptp_system_prod_deployment" {
+            autoLayout
+            include *
         }
 
         dynamic social_network "Case1" {
