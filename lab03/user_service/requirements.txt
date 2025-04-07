@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+python-jose
+passlib[bcrypt]
+python-multipart
+pydantic>=2.0
+requests
+psycopg2-binary
+SQLAlchemy
