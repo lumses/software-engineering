@@ -23,7 +23,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
+              "type": "string",
               "title": "User Id"
             }
           }
@@ -84,7 +84,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
+              "type": "string",
               "title": "User Id"
             }
           }
@@ -146,19 +146,24 @@
             "title": "Content"
           },
           "id": {
-            "type": "string",
-            "format": "uuid",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Id"
           },
           "user_id": {
-            "type": "integer",
+            "type": "string",
             "title": "User Id"
           }
         },
         "type": "object",
         "required": [
           "content",
-          "id",
           "user_id"
         ],
         "title": "Post"
