@@ -11,6 +11,8 @@
 5. Ваши сервисы должны запускаться через docker-compose командой docker-
 compose up (создайте Docker файлы для каждого сервиса)
 
+### Отчет производительности
+```
 Тест без кэша:
 Тест [NO_CACHE] с 1 потоками:
 Running 10s test @ http://localhost:8000/users/search
@@ -72,3 +74,4 @@ Running 10s test @ http://localhost:8000/users-redis/cached-search
   16965 requests in 10.03s, 3.71MB read
 Requests/sec:   1691.15
 Transfer/sec:    378.20KB
+```
